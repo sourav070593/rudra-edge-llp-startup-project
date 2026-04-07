@@ -4,7 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
+  /* Light mode base: soft soothing light blue */
+  --background: #eaf2ff;
+  --background: oklch(0.955 0.05 245);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -40,6 +42,7 @@
 }
 
 .dark {
+  --background: #0b1220;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.145 0 0);
@@ -121,5 +124,162 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+  html {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+@layer utilities {
+  @keyframes rudra-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes rudra-float-soft {
+    0%,
+    100% {
+      transform: translateY(0) translateX(0);
+    }
+    50% {
+      transform: translateY(-8px) translateX(4px);
+    }
+  }
+
+  @keyframes rudra-shimmer {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+
+  @keyframes rudra-shimmer-subtle {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 120% 50%;
+    }
+  }
+
+  @keyframes rudra-text-drift-subtle {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes rudra-rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes rudra-globe-eye-globe {
+    0%,
+    38% {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+      filter: blur(0px);
+    }
+    48% {
+      opacity: 0;
+      transform: scale(0.92) rotate(12deg);
+      filter: blur(2px);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.92) rotate(12deg);
+      filter: blur(2px);
+    }
+  }
+
+  @keyframes rudra-globe-eye-eye {
+    0%,
+    44% {
+      opacity: 0;
+      transform: scale(0.92);
+      filter: blur(2px);
+    }
+    54%,
+    90% {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.92);
+      filter: blur(2px);
+    }
+  }
+
+  .animate-rudra-float {
+    animation: rudra-float 6s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .animate-rudra-float-soft {
+    animation: rudra-float-soft 8s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .animate-rudra-shimmer {
+    background-size: 200% 200%;
+    animation: rudra-shimmer 4.5s ease-in-out infinite;
+  }
+
+  .animate-rudra-shimmer-subtle {
+    background-size: 200% 200%;
+    animation: rudra-shimmer-subtle 12s ease-in-out infinite;
+    will-change: background-position;
+  }
+
+  .animate-rudra-text-drift-subtle {
+    background-size: 200% 200%;
+    animation: rudra-text-drift-subtle 16s ease-in-out infinite;
+    will-change: background-position;
+  }
+
+  .rudra-globe-eye-globe {
+    animation: rudra-globe-eye-globe 4.8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  }
+
+  .rudra-globe-eye-globe svg {
+    animation: rudra-rotate 2.8s linear infinite;
+  }
+
+  .rudra-globe-eye-eye {
+    animation: rudra-globe-eye-eye 4.8s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  }
+
+  /* Hover should fully become the eye (override loop) */
+  .group:hover .rudra-globe-eye-globe {
+    opacity: 0 !important;
+    transform: scale(0.94) !important;
+    filter: blur(2px) !important;
+    animation: none !important;
+  }
+
+  .group:hover .rudra-globe-eye-eye {
+    opacity: 1 !important;
+    transform: scale(1.06) !important;
+    filter: blur(0px) !important;
+    animation: none !important;
   }
 }

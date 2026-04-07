@@ -26,7 +26,7 @@ const socialLinks = [
 // Premium Logo with hexagonal R mark and RudraEdge branding
 function Logo() {
   return (
-    <div className="flex items-center gap-2 transition-transform duration-300 hover:scale-105">
+    <div className="group flex items-center gap-2 transition-transform duration-500 hover:scale-105">
       {/* Geometric hexagon mark with R */}
       <div className="relative w-8 h-8 flex items-center justify-center">
         <svg viewBox="0 0 40 40" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,39 +57,62 @@ function Logo() {
             strokeOpacity="0.18"
             strokeWidth="3.6"
           />
-          <path 
-            d="M14 13H22C24.2 13 26 14.8 26 17C26 19.2 24.2 21 22 21H18V27H14V13ZM18 17.5H21.5C22.1 17.5 22.5 17.1 22.5 16.5C22.5 15.9 22.1 15.5 21.5 15.5H18V17.5Z" 
-            className="fill-primary"
-          />
-          {/* R outline to make it read better on both themes */}
-          <path
-            d="M14 13H22C24.2 13 26 14.8 26 17C26 19.2 24.2 21 22 21H18V27H14V13ZM18 17.5H21.5C22.1 17.5 22.5 17.1 22.5 16.5C22.5 15.9 22.1 15.5 21.5 15.5H18V17.5Z"
-            fill="none"
-            stroke="url(#hex-border)"
-            strokeWidth="1.4"
-            strokeLinejoin="round"
-            strokeLinecap="round"
-            opacity="0.95"
-          />
-          <path 
-            d="M20 21L26 27" 
-            className="stroke-primary" 
-            strokeWidth="2.5" 
-            strokeLinecap="round"
-          />
-          {/* Blue highlight on diagonal accent */}
-          <path
-            d="M20 21L26 27"
-            fill="none"
-            stroke="url(#hex-border)"
-            strokeWidth="1.7"
-            strokeLinecap="round"
-            opacity="0.95"
-          />
+          {/* Inner mark: R -> eye morph */}
+          <g className="transition-all duration-500 group-hover:opacity-0 group-hover:scale-95" style={{ transformOrigin: "20px 20px" }}>
+            <path 
+              d="M14 13H22C24.2 13 26 14.8 26 17C26 19.2 24.2 21 22 21H18V27H14V13ZM18 17.5H21.5C22.1 17.5 22.5 17.1 22.5 16.5C22.5 15.9 22.1 15.5 21.5 15.5H18V17.5Z" 
+              className="fill-primary"
+            />
+            <path
+              d="M14 13H22C24.2 13 26 14.8 26 17C26 19.2 24.2 21 22 21H18V27H14V13ZM18 17.5H21.5C22.1 17.5 22.5 17.1 22.5 16.5C22.5 15.9 22.1 15.5 21.5 15.5H18V17.5Z"
+              fill="none"
+              stroke="url(#hex-border)"
+              strokeWidth="1.4"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              opacity="0.95"
+            />
+            <path 
+              d="M20 21L26 27" 
+              className="stroke-primary" 
+              strokeWidth="2.5" 
+              strokeLinecap="round"
+            />
+            <path
+              d="M20 21L26 27"
+              fill="none"
+              stroke="url(#hex-border)"
+              strokeWidth="1.7"
+              strokeLinecap="round"
+              opacity="0.95"
+            />
+          </g>
+          <g className="opacity-0 scale-90 transition-all duration-500 group-hover:opacity-100 group-hover:scale-110" style={{ transformOrigin: "20px 20px" }}>
+            <defs>
+              <linearGradient id="eyeStrokeRed" x1="10" y1="14" x2="30" y2="26" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#93c5fd" />
+                <stop offset="1" stopColor="#2563eb" />
+              </linearGradient>
+              <radialGradient id="eyeGlowRed" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(20 20) rotate(90) scale(16)">
+                <stop stopColor="#60a5fa" stopOpacity="0.22" />
+                <stop offset="1" stopColor="#2563eb" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+            <circle cx="20" cy="20" r="14" fill="url(#eyeGlowRed)" />
+            <path
+              d="M9.5 20c4.2-5.7 8.9-8.5 10.5-8.5s6.3 2.8 10.5 8.5c-4.2 5.7-8.9 8.5-10.5 8.5S13.7 25.7 9.5 20Z"
+              stroke="url(#eyeStrokeRed)"
+              strokeWidth="2.4"
+              opacity="0.95"
+            />
+            <circle cx="20" cy="20" r="4.6" fill="#2563eb" opacity="0.95" />
+            <circle cx="20" cy="20" r="8.4" stroke="#60a5fa" strokeWidth="1.4" opacity="0.28" />
+          </g>
         </svg>
+
       </div>
       {/* Wordmark */}
-      <span className="text-lg font-semibold tracking-tight text-foreground">
+      <span className="text-lg font-semibold tracking-tight text-foreground transition-all duration-500 group-hover:opacity-0 group-hover:translate-x-1 group-hover:blur-[1px]">
         RudraEdge
       </span>
     </div>

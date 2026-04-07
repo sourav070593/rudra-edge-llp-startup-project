@@ -66,11 +66,16 @@ export function About() {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             )}
           >
-            <div className="relative">
+            <div className="group relative">
               {/* Main card */}
               <div className="relative p-10 lg:p-12 rounded-3xl border border-border/40 bg-gradient-to-br from-card/60 to-card/20 overflow-hidden">
                 {/* Background glow */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/10 to-accent/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2" />
+                {/* Premium shimmer film on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute -inset-24 bg-gradient-to-r from-blue-500/10 via-cyan-400/10 to-indigo-500/10 blur-2xl animate-rudra-shimmer" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.05] via-transparent to-accent/[0.04]" />
+                </div>
                 
                 {/* Content */}
                 <div className="relative z-10">
@@ -85,7 +90,9 @@ export function About() {
                   <h3 className="text-3xl lg:text-4xl font-medium tracking-tight mb-4">
                     Quality over
                     <br />
-                    <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">quantity</span>
+                    <span className="bg-gradient-to-r from-primary via-blue-500 to-accent bg-clip-text text-transparent animate-rudra-shimmer">
+                      quantity
+                    </span>
                   </h3>
                   
                   <p className="text-muted-foreground leading-relaxed">
@@ -108,7 +115,7 @@ export function About() {
               </div>
 
               {/* Decorative offset border */}
-              <div className="absolute -inset-px rounded-3xl border border-primary/10 -z-10 translate-x-2 translate-y-2" />
+              <div className="absolute -inset-px rounded-3xl border border-primary/10 -z-10 translate-x-2 translate-y-2 transition-all duration-500 group-hover:translate-x-3 group-hover:translate-y-3 group-hover:border-blue-400/20" />
             </div>
           </div>
         </div>

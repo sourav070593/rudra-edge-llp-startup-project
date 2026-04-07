@@ -17,83 +17,149 @@ export function Hero() {
       {/* Subtle radial glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-b from-primary/[0.08] to-transparent rounded-full blur-[100px]" />
 
-      {/* India-themed decorative illustration (inline SVG) */}
-      <div className="hidden lg:block absolute right-[-90px] top-24 w-[420px] h-[420px] z-0 pointer-events-none select-none">
-        <svg viewBox="0 0 420 420" width="420" height="420" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="tri-stroke" x1="120" y1="80" x2="300" y2="340" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#ef4444" stopOpacity="0.85" />
-              <stop offset="0.5" stopColor="#f59e0b" stopOpacity="0.85" />
-              <stop offset="1" stopColor="#3b82f6" stopOpacity="0.85" />
-            </linearGradient>
-            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="4" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-
-          {/* Outer premium ring */}
-          <g filter="url(#glow)">
-            <circle cx="210" cy="210" r="155" fill="none" stroke="url(#tri-stroke)" strokeWidth="10" opacity="0.22" />
-            <circle cx="210" cy="210" r="130" fill="none" stroke="url(#tri-stroke)" strokeWidth="2.5" opacity="0.7" strokeDasharray="6 10">
-              <animate attributeName="stroke-dashoffset" from="0" to="-160" dur="8s" repeatCount="indefinite" />
-            </circle>
-          </g>
-
-          {/* Ashoka Chakra-like wheel */}
-          <g>
-            <circle cx="210" cy="210" r="92" fill="none" stroke="#2563eb" strokeWidth="7" opacity="0.75" />
-            <circle cx="210" cy="210" r="78" fill="none" stroke="#60a5fa" strokeWidth="2.5" opacity="0.85" />
-            <g opacity="0.9">
-              <line x1="210" y1="128" x2="210" y2="148" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
-              <line x1="210" y1="252" x2="210" y2="272" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
-              <line x1="128" y1="210" x2="148" y2="210" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
-              <line x1="272" y1="210" x2="292" y2="210" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
-
-              <line x1="155" y1="155" x2="169" y2="169" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
-              <line x1="251" y1="251" x2="265" y2="265" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
-              <line x1="155" y1="265" x2="169" y2="251" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
-              <line x1="251" y1="169" x2="265" y2="155" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
-            </g>
-            <circle cx="210" cy="210" r="18" fill="#2563eb" opacity="0.9" />
-
-            <animateTransform
-              attributeName="transform"
-              type="rotate"
-              from="0 210 210"
-              to="360 210 210"
-              dur="18s"
-              repeatCount="indefinite"
+      {/* Independent floating entities (left + right) with hover "advanced state" */}
+      <div className="hidden lg:block absolute inset-0 z-0 select-none">
+        {/* Cloud - left */}
+        <div className="group absolute left-10 top-28 w-36 h-24 pointer-events-auto animate-rudra-float transition-transform duration-500 hover:scale-[1.02]">
+          <div className="absolute inset-0 rounded-2xl border border-border/30 bg-card/10 backdrop-blur-sm transition-all duration-500 group-hover:border-blue-400/30 group-hover:bg-card/20 group-hover:shadow-[0_0_40px_rgba(37,99,235,0.12)]" />
+          <svg viewBox="0 0 220 140" className="relative w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="cStroke" x1="0" y1="0" x2="1" y2="1">
+                <stop stopColor="#93c5fd" />
+                <stop offset="1" stopColor="#2563eb" />
+              </linearGradient>
+              <linearGradient id="cStroke2" x1="1" y1="0" x2="0" y2="1">
+                <stop stopColor="#34d399" />
+                <stop offset="1" stopColor="#60a5fa" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M72 92c-18 0-33-15-33-33 0-14 10-27 25-31 6-18 23-32 43-32 22 0 41 16 46 38 16 2 29 16 29 33 0 18-15 33-33 33H72Z"
+              fill="rgba(37,99,235,0.06)"
+              stroke="url(#cStroke)"
+              strokeWidth="4.5"
+              opacity="0.9"
+              className="transition-all duration-500 group-hover:opacity-0"
             />
-          </g>
+            {/* Advanced state */}
+            <path
+              d="M72 92c-18 0-33-15-33-33 0-14 10-27 25-31 6-18 23-32 43-32 22 0 41 16 46 38 16 2 29 16 29 33 0 18-15 33-33 33H72Z"
+              fill="rgba(52,211,153,0.06)"
+              stroke="url(#cStroke2)"
+              strokeWidth="5.5"
+              opacity="0"
+              className="transition-all duration-500 group-hover:opacity-100"
+            />
+            <path
+              d="M56 102c18 10 68 10 86 0"
+              fill="none"
+              stroke="#60a5fa"
+              strokeWidth="3"
+              opacity="0"
+              strokeLinecap="round"
+              className="transition-all duration-500 group-hover:opacity-55"
+              strokeDasharray="10 12"
+            />
+          </svg>
+        </div>
 
-          {/* Animated circuit lines */}
-          <path
-            d="M108 244 C 140 210, 165 205, 192 190 S 250 160, 292 170"
-            fill="none"
-            stroke="#60a5fa"
-            strokeWidth="3"
-            strokeDasharray="10 14"
-            opacity="0.6"
-            strokeLinecap="round"
-          >
-            <animate attributeName="stroke-dashoffset" from="0" to="-120" dur="6s" repeatCount="indefinite" />
-          </path>
-          <path
-            d="M132 280 C 160 255, 190 248, 220 244 S 270 235, 310 210"
-            fill="none"
-            stroke="#2563eb"
-            strokeWidth="2.5"
-            strokeDasharray="8 12"
-            opacity="0.55"
-            strokeLinecap="round"
-          >
-            <animate attributeName="stroke-dashoffset" from="0" to="-100" dur="7s" repeatCount="indefinite" />
-          </path>
-        </svg>
+        {/* Telecom tower - right */}
+        <div className="group absolute right-10 top-36 w-28 h-44 pointer-events-auto animate-rudra-float-soft transition-transform duration-500 hover:scale-[1.02]">
+          <div className="absolute inset-0 rounded-2xl border border-border/30 bg-card/10 backdrop-blur-sm transition-all duration-500 group-hover:border-blue-400/30 group-hover:bg-card/20 group-hover:shadow-[0_0_40px_rgba(167,139,250,0.12)]" />
+          <svg viewBox="0 0 140 220" className="relative w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="tStroke" x1="0" y1="0" x2="1" y2="1">
+                <stop stopColor="#93c5fd" />
+                <stop offset="1" stopColor="#2563eb" />
+              </linearGradient>
+              <linearGradient id="tStroke2" x1="0" y1="1" x2="1" y2="0">
+                <stop stopColor="#a78bfa" />
+                <stop offset="1" stopColor="#60a5fa" />
+              </linearGradient>
+            </defs>
+            <path d="M28 202 L70 18 L112 202 Z" fill="none" stroke="url(#tStroke)" strokeWidth="4.2" opacity="0.9" className="transition-all duration-500 group-hover:opacity-0" />
+            <path d="M28 202 L70 18 L112 202 Z" fill="none" stroke="url(#tStroke2)" strokeWidth="5.2" opacity="0" className="transition-all duration-500 group-hover:opacity-100" />
+            <path d="M44 160h52M40 126h60M36 92h68" stroke="#93c5fd" strokeWidth="4" opacity="0.55" strokeLinecap="round" />
+            <circle cx="70" cy="12" r="7" fill="#60a5fa" opacity="0.9" />
+            <path d="M70 12c30 12 50 36 50 66" fill="none" stroke="#60a5fa" strokeWidth="3.2" opacity="0.12" className="transition-all duration-500 group-hover:opacity-0.45" />
+            <path d="M70 12c-30 12-50 36-50 66" fill="none" stroke="#60a5fa" strokeWidth="3.2" opacity="0.25" className="transition-all duration-500 group-hover:opacity-0.55" />
+            {/* Advanced ping ring */}
+            <circle cx="70" cy="12" r="20" fill="none" stroke="#a78bfa" strokeWidth="2.5" opacity="0" className="transition-all duration-500 group-hover:opacity-35" />
+          </svg>
+        </div>
+
+        {/* Agent / robot - left bottom */}
+        <div className="group absolute left-16 bottom-28 w-32 h-28 pointer-events-auto animate-rudra-float-soft transition-transform duration-500 hover:scale-[1.02]">
+          <div className="absolute inset-0 rounded-2xl border border-border/30 bg-card/10 backdrop-blur-sm transition-all duration-500 group-hover:border-blue-400/30 group-hover:bg-card/20 group-hover:shadow-[0_0_40px_rgba(52,211,153,0.12)]" />
+          <svg viewBox="0 0 220 160" className="relative w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="aStroke" x1="0" y1="0" x2="1" y2="1">
+                <stop stopColor="#93c5fd" />
+                <stop offset="1" stopColor="#2563eb" />
+              </linearGradient>
+              <linearGradient id="aStroke2" x1="0" y1="1" x2="1" y2="0">
+                <stop stopColor="#34d399" />
+                <stop offset="1" stopColor="#60a5fa" />
+              </linearGradient>
+            </defs>
+            <rect x="40" y="34" width="140" height="110" rx="34" fill="rgba(37,99,235,0.06)" stroke="url(#aStroke)" strokeWidth="4.2" opacity="0.95" className="transition-all duration-500 group-hover:opacity-0" />
+            <rect x="40" y="34" width="140" height="110" rx="34" fill="rgba(52,211,153,0.06)" stroke="url(#aStroke2)" strokeWidth="5.2" opacity="0" className="transition-all duration-500 group-hover:opacity-100" />
+            <rect x="68" y="62" width="84" height="38" rx="16" fill="#0b1220" opacity="0.55" stroke="#60a5fa" strokeWidth="2.8" />
+            <circle cx="92" cy="81" r="7" fill="#60a5fa" />
+            <circle cx="128" cy="81" r="7" fill="#60a5fa" />
+            <path d="M92 114c14 16 30 16 44 0" fill="none" stroke="#93c5fd" strokeWidth="3.2" opacity="0.7" strokeLinecap="round" />
+            <path d="M110 34v-18" stroke="#60a5fa" strokeWidth="3.2" strokeLinecap="round" opacity="0.7" />
+            <circle cx="110" cy="10" r="6" fill="#a78bfa" opacity="0" className="transition-all duration-500 group-hover:opacity-85" />
+          </svg>
+        </div>
+
+        {/* Laptop - right bottom */}
+        <div className="group absolute right-20 bottom-24 w-36 h-26 pointer-events-auto animate-rudra-float transition-transform duration-500 hover:scale-[1.02]">
+          <div className="absolute inset-0 rounded-2xl border border-border/30 bg-card/10 backdrop-blur-sm transition-all duration-500 group-hover:border-blue-400/30 group-hover:bg-card/20 group-hover:shadow-[0_0_40px_rgba(96,165,250,0.12)]" />
+          <svg viewBox="0 0 260 120" className="relative w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="lStroke" x1="0" y1="0" x2="1" y2="1">
+                <stop stopColor="#93c5fd" />
+                <stop offset="1" stopColor="#2563eb" />
+              </linearGradient>
+              <linearGradient id="lStroke2" x1="1" y1="0" x2="0" y2="1">
+                <stop stopColor="#a78bfa" />
+                <stop offset="1" stopColor="#34d399" />
+              </linearGradient>
+            </defs>
+            <rect x="32" y="18" width="170" height="70" rx="16" fill="rgba(37,99,235,0.06)" stroke="url(#lStroke)" strokeWidth="4.2" opacity="0.95" className="transition-all duration-500 group-hover:opacity-0" />
+            <rect x="32" y="18" width="170" height="70" rx="16" fill="rgba(167,139,250,0.06)" stroke="url(#lStroke2)" strokeWidth="5.2" opacity="0" className="transition-all duration-500 group-hover:opacity-100" />
+            <rect x="52" y="32" width="130" height="42" rx="10" fill="#0b1220" opacity="0.55" stroke="#60a5fa" strokeWidth="2.5" />
+            <path d="M12 96h210" stroke="url(#lStroke)" strokeWidth="8" strokeLinecap="round" opacity="0.75" />
+            <path d="M46 96c18 14 102 14 120 0" fill="none" stroke="#93c5fd" strokeWidth="3" opacity="0.25" />
+            {/* Advanced scan line */}
+            <path d="M58 52h118" stroke="#34d399" strokeWidth="3" opacity="0" className="transition-all duration-500 group-hover:opacity-0.55" strokeDasharray="12 10" />
+          </svg>
+        </div>
+
+        {/* Mobile apps - mid right */}
+        <div className="group absolute right-44 top-44 w-20 h-36 pointer-events-auto animate-rudra-float transition-transform duration-500 hover:scale-[1.02]">
+          <div className="absolute inset-0 rounded-2xl border border-border/30 bg-card/10 backdrop-blur-sm transition-all duration-500 group-hover:border-blue-400/30 group-hover:bg-card/20 group-hover:shadow-[0_0_40px_rgba(37,99,235,0.12)]" />
+          <svg viewBox="0 0 140 240" className="relative w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="mStroke" x1="0" y1="0" x2="1" y2="1">
+                <stop stopColor="#93c5fd" />
+                <stop offset="1" stopColor="#2563eb" />
+              </linearGradient>
+              <linearGradient id="mStroke2" x1="0" y1="1" x2="1" y2="0">
+                <stop stopColor="#34d399" />
+                <stop offset="1" stopColor="#a78bfa" />
+              </linearGradient>
+            </defs>
+            <rect x="24" y="18" width="92" height="190" rx="22" fill="rgba(37,99,235,0.06)" stroke="url(#mStroke)" strokeWidth="4.2" opacity="0.95" className="transition-all duration-500 group-hover:opacity-0" />
+            <rect x="24" y="18" width="92" height="190" rx="22" fill="rgba(52,211,153,0.06)" stroke="url(#mStroke2)" strokeWidth="5.2" opacity="0" className="transition-all duration-500 group-hover:opacity-100" />
+            <rect x="36" y="42" width="68" height="120" rx="16" fill="#0b1220" opacity="0.55" stroke="#60a5fa" strokeWidth="2.6" />
+            <circle cx="70" cy="182" r="7" fill="#93c5fd" opacity="0.75" />
+            <path d="M46 70h48" stroke="#93c5fd" strokeWidth="3" opacity="0.3" strokeLinecap="round" />
+            <path d="M46 90h30" stroke="#93c5fd" strokeWidth="3" opacity="0.25" strokeLinecap="round" />
+            <path d="M46 112h44" stroke="#34d399" strokeWidth="3" opacity="0" className="transition-all duration-500 group-hover:opacity-0.5" strokeLinecap="round" />
+          </svg>
+        </div>
       </div>
 
       <div ref={ref} className="container mx-auto px-6 lg:px-8 relative z-10 pt-20">
@@ -110,17 +176,6 @@ export function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary/60 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
               </span>
-                  {/* India tricolor mini badge */}
-                  <span className="relative inline-flex w-5 h-3 overflow-hidden rounded-sm border border-border/40 animate-pulse">
-                    <svg viewBox="0 0 50 30" className="w-5 h-3" xmlns="http://www.w3.org/2000/svg">
-                      <rect x="0" y="0" width="50" height="10" fill="#f59e0b" />
-                      <rect x="0" y="10" width="50" height="10" fill="#ffffff" />
-                      <rect x="0" y="20" width="50" height="10" fill="#22c55e" />
-                      {/* Chakra hint */}
-                      <circle cx="25" cy="15" r="4.2" fill="none" stroke="#2563eb" strokeWidth="1.2" />
-                      <circle cx="25" cy="15" r="2.1" fill="#2563eb" opacity="0.9" />
-                    </svg>
-                  </span>
               <span className="tracking-wide">Building the future of intelligent systems</span>
             </div>
           </div>
@@ -135,8 +190,10 @@ export function Hero() {
             <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tight leading-[1.05] text-balance">
               AI solutions that
             </span>
-            <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tight leading-[1.05] text-muted-foreground/70 mt-1">
-              drive real impact
+            <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-medium tracking-tight leading-[1.05] mt-1">
+              <span className="inline-block bg-gradient-to-r from-primary/90 via-blue-500/85 to-accent/90 bg-clip-text text-transparent animate-rudra-text-drift-subtle">
+                drive real impact
+              </span>
             </span>
           </h1>
 

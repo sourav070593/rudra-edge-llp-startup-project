@@ -20,8 +20,9 @@ export function ThemeToggle() {
     document.documentElement.classList.toggle("dark", nextDark)
     setIsDark(nextDark)
     try {
-      if (nextDark) localStorage.setItem("theme", "dark")
-      else localStorage.removeItem("theme")
+      // Default is dark; persist only when user selects light.
+      if (nextDark) localStorage.removeItem("theme")
+      else localStorage.setItem("theme", "light")
     } catch (e) {
       // localStorage might be blocked; still toggle UI for this session.
     }

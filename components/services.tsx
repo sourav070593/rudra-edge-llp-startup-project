@@ -72,14 +72,23 @@ export function Services() {
               <div 
                 key={service.title}
                 className={cn(
-                  "group relative p-8 lg:p-10 rounded-2xl border border-border/40 bg-card/20 hover:bg-card/40 hover:border-border/60 transition-all duration-500 cursor-pointer",
+                  "group relative p-8 lg:p-10 rounded-2xl border border-border/40 bg-card/20 hover:bg-card/40 hover:border-border/60 transition-all duration-500 cursor-pointer overflow-hidden",
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 )}
                 style={{ transitionDelay: `${index * 100 + 100}ms` }}
               >
+                {/* Premium animated gradient aura (distinct from hero) */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute -inset-24 bg-gradient-to-r from-blue-500/10 via-cyan-400/10 to-indigo-500/10 blur-2xl animate-rudra-shimmer" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.06] via-transparent to-accent/[0.04]" />
+                </div>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-[1px] rounded-2xl border border-blue-400/20" />
+                </div>
+
                 <div className="flex items-start justify-between mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Icon className="w-5 h-5 text-primary" />
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center ring-1 ring-border/30 group-hover:ring-blue-400/30 group-hover:bg-primary/15 transition-all duration-500">
+                    <Icon className="w-5 h-5 text-primary transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110" />
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-muted-foreground/30 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
                 </div>
@@ -95,7 +104,7 @@ export function Services() {
                   {service.capabilities.map((cap) => (
                     <span 
                       key={cap} 
-                      className="text-xs px-3 py-1.5 rounded-full bg-secondary/40 text-muted-foreground"
+                      className="text-xs px-3 py-1.5 rounded-full bg-secondary/40 text-muted-foreground transition-all duration-500 group-hover:bg-secondary/55 group-hover:text-foreground/80"
                     >
                       {cap}
                     </span>

@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Menu, X, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const navLinks = [
   { href: "#services", label: "Services" },
@@ -16,24 +17,70 @@ const navLinks = [
 // Premium Logo with hexagonal R mark and RudraEdge branding
 function Logo({ className }: { className?: string }) {
   return (
-    <div className={cn("flex items-center gap-2.5", className)}>
+    <div
+      className={cn(
+        "flex items-center gap-2.5 transition-transform duration-300 hover:scale-105",
+        className
+      )}
+    >
       {/* Geometric hexagon mark with R */}
       <div className="relative w-9 h-9 flex items-center justify-center">
         <svg viewBox="0 0 40 40" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="hex-border" x1="6" y1="6" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#60a5fa" stopOpacity="0.95" />
+              <stop offset="1" stopColor="#2563eb" stopOpacity="0.95" />
+            </linearGradient>
+          </defs>
           <path 
             d="M20 3L35 12V28L20 37L5 28V12L20 3Z" 
             className="fill-primary/15 stroke-primary" 
             strokeWidth="1.5"
           />
+          {/* Premium outer ring */}
+          <path
+            d="M20 3L35 12V28L20 37L5 28V12L20 3Z"
+            fill="none"
+            stroke="url(#hex-border)"
+            strokeOpacity="0.55"
+            strokeWidth="2.2"
+            className="animate-pulse"
+          />
+          <path
+            d="M20 3L35 12V28L20 37L5 28V12L20 3Z"
+            fill="none"
+            stroke="url(#hex-border)"
+            strokeOpacity="0.18"
+            strokeWidth="3.6"
+          />
           <path 
             d="M14 13H22C24.2 13 26 14.8 26 17C26 19.2 24.2 21 22 21H18V27H14V13ZM18 17.5H21.5C22.1 17.5 22.5 17.1 22.5 16.5C22.5 15.9 22.1 15.5 21.5 15.5H18V17.5Z" 
             className="fill-primary"
+          />
+          {/* R outline to make it read better on both themes */}
+          <path
+            d="M14 13H22C24.2 13 26 14.8 26 17C26 19.2 24.2 21 22 21H18V27H14V13ZM18 17.5H21.5C22.1 17.5 22.5 17.1 22.5 16.5C22.5 15.9 22.1 15.5 21.5 15.5H18V17.5Z"
+            fill="none"
+            stroke="url(#hex-border)"
+            strokeWidth="1.4"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+            opacity="0.95"
           />
           <path 
             d="M20 21L26 27" 
             className="stroke-primary" 
             strokeWidth="2.5" 
             strokeLinecap="round"
+          />
+          {/* Blue highlight on diagonal accent */}
+          <path
+            d="M20 21L26 27"
+            fill="none"
+            stroke="url(#hex-border)"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+            opacity="0.95"
           />
         </svg>
       </div>
@@ -86,11 +133,12 @@ export function Header() {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden lg:flex items-center">
-            <Button 
-              asChild 
-              size="sm" 
+          {/* CTA + Theme Toggle */}
+          <div className="hidden lg:flex items-center gap-4">
+            <ThemeToggle />
+            <Button
+              asChild
+              size="sm"
               className="gap-2 bg-foreground hover:bg-foreground/90 text-background font-medium px-5"
             >
               <Link href="#contact">
@@ -100,14 +148,17 @@ export function Header() {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 text-muted-foreground hover:text-foreground transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* Mobile Actions */}
+          <div className="lg:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}

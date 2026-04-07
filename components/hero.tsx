@@ -17,6 +17,85 @@ export function Hero() {
       {/* Subtle radial glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-b from-primary/[0.08] to-transparent rounded-full blur-[100px]" />
 
+      {/* India-themed decorative illustration (inline SVG) */}
+      <div className="hidden lg:block absolute right-[-90px] top-24 w-[420px] h-[420px] z-0 pointer-events-none select-none">
+        <svg viewBox="0 0 420 420" width="420" height="420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="tri-stroke" x1="120" y1="80" x2="300" y2="340" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#ef4444" stopOpacity="0.85" />
+              <stop offset="0.5" stopColor="#f59e0b" stopOpacity="0.85" />
+              <stop offset="1" stopColor="#3b82f6" stopOpacity="0.85" />
+            </linearGradient>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="4" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          {/* Outer premium ring */}
+          <g filter="url(#glow)">
+            <circle cx="210" cy="210" r="155" fill="none" stroke="url(#tri-stroke)" strokeWidth="10" opacity="0.22" />
+            <circle cx="210" cy="210" r="130" fill="none" stroke="url(#tri-stroke)" strokeWidth="2.5" opacity="0.7" strokeDasharray="6 10">
+              <animate attributeName="stroke-dashoffset" from="0" to="-160" dur="8s" repeatCount="indefinite" />
+            </circle>
+          </g>
+
+          {/* Ashoka Chakra-like wheel */}
+          <g>
+            <circle cx="210" cy="210" r="92" fill="none" stroke="#2563eb" strokeWidth="7" opacity="0.75" />
+            <circle cx="210" cy="210" r="78" fill="none" stroke="#60a5fa" strokeWidth="2.5" opacity="0.85" />
+            <g opacity="0.9">
+              <line x1="210" y1="128" x2="210" y2="148" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
+              <line x1="210" y1="252" x2="210" y2="272" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
+              <line x1="128" y1="210" x2="148" y2="210" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
+              <line x1="272" y1="210" x2="292" y2="210" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
+
+              <line x1="155" y1="155" x2="169" y2="169" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
+              <line x1="251" y1="251" x2="265" y2="265" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
+              <line x1="155" y1="265" x2="169" y2="251" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
+              <line x1="251" y1="169" x2="265" y2="155" stroke="#93c5fd" strokeWidth="4" strokeLinecap="round" />
+            </g>
+            <circle cx="210" cy="210" r="18" fill="#2563eb" opacity="0.9" />
+
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              from="0 210 210"
+              to="360 210 210"
+              dur="18s"
+              repeatCount="indefinite"
+            />
+          </g>
+
+          {/* Animated circuit lines */}
+          <path
+            d="M108 244 C 140 210, 165 205, 192 190 S 250 160, 292 170"
+            fill="none"
+            stroke="#60a5fa"
+            strokeWidth="3"
+            strokeDasharray="10 14"
+            opacity="0.6"
+            strokeLinecap="round"
+          >
+            <animate attributeName="stroke-dashoffset" from="0" to="-120" dur="6s" repeatCount="indefinite" />
+          </path>
+          <path
+            d="M132 280 C 160 255, 190 248, 220 244 S 270 235, 310 210"
+            fill="none"
+            stroke="#2563eb"
+            strokeWidth="2.5"
+            strokeDasharray="8 12"
+            opacity="0.55"
+            strokeLinecap="round"
+          >
+            <animate attributeName="stroke-dashoffset" from="0" to="-100" dur="7s" repeatCount="indefinite" />
+          </path>
+        </svg>
+      </div>
+
       <div ref={ref} className="container mx-auto px-6 lg:px-8 relative z-10 pt-20">
         <div className="max-w-4xl mx-auto">
           {/* Status badge */}
@@ -31,6 +110,17 @@ export function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary/60 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
               </span>
+                  {/* India tricolor mini badge */}
+                  <span className="relative inline-flex w-5 h-3 overflow-hidden rounded-sm border border-border/40 animate-pulse">
+                    <svg viewBox="0 0 50 30" className="w-5 h-3" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="0" y="0" width="50" height="10" fill="#f59e0b" />
+                      <rect x="0" y="10" width="50" height="10" fill="#ffffff" />
+                      <rect x="0" y="20" width="50" height="10" fill="#22c55e" />
+                      {/* Chakra hint */}
+                      <circle cx="25" cy="15" r="4.2" fill="none" stroke="#2563eb" strokeWidth="1.2" />
+                      <circle cx="25" cy="15" r="2.1" fill="#2563eb" opacity="0.9" />
+                    </svg>
+                  </span>
               <span className="tracking-wide">Building the future of intelligent systems</span>
             </div>
           </div>

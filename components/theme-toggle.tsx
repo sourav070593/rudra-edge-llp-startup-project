@@ -7,12 +7,19 @@ import { Button } from "@/components/ui/button"
 
 export function ThemeToggle() {
   const [isDark, setIsDark] = React.useState(() => {
-    if (typeof document === "undefined") return false
+    if (typeof document === "undefined") return true
     return document.documentElement.classList.contains("dark")
   })
 
   React.useEffect(() => {
-    setIsDark(document.documentElement.classList.contains("dark"))
+    // If the user visits the site, ensure we default to dark if not set
+    if (!localStorage.getItem("theme")) {
+      localStorage.setItem("theme", "dark")
+      document.documentElement.classList.add("dark")
+      setIsDark(true)
+    } else {
+      setIsDark(document.documentElement.classList.contains("dark"))
+    }
   }, [])
 
   const toggleTheme = () => {
@@ -20,9 +27,7 @@ export function ThemeToggle() {
     document.documentElement.classList.toggle("dark", nextDark)
     setIsDark(nextDark)
     try {
-      // Default is dark; persist only when user selects light.
-      if (nextDark) localStorage.removeItem("theme")
-      else localStorage.setItem("theme", "light")
+      localStorage.setItem("theme", nextDark ? "dark" : "light")
     } catch (e) {
       // localStorage might be blocked; still toggle UI for this session.
     }

@@ -5,9 +5,8 @@ export function ThemeScript() {
     <Script id="theme-script" strategy="beforeInteractive">
       {`
         try {
-          const theme = localStorage.getItem('theme')
-          // Default is dark. Persisted "theme" only stores "light".
-          const isDark = theme !== 'light'
+          const theme = localStorage.getItem('theme') || 'dark'
+          const isDark = theme === 'dark'
           document.documentElement.classList.toggle('dark', isDark)
           document.documentElement.style.colorScheme = isDark ? 'dark' : 'light'
         } catch (e) {

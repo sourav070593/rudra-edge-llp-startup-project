@@ -16,6 +16,7 @@ const navLinks = [
   { href: "#contact", label: "Contact" },
 ]
 
+// Official Rudra Edge brand logo
 function Logo({ className }: { className?: string }) {
   return (
     <div
@@ -25,11 +26,11 @@ function Logo({ className }: { className?: string }) {
       )}
     >
       <Image
-        src="/Logo.png"
+        src="/rudraedge-logo.png?v=6"
         alt="Rudra Edge"
-        width={140}
-        height={44}
-        className="h-9 w-auto object-contain"
+        width={240}
+        height={64}
+        className="h-14 w-auto object-contain drop-shadow-sm transition-transform duration-300"
         priority
       />
     </div>
